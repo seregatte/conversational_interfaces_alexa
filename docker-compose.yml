@@ -1,0 +1,36 @@
+version: '2'
+
+networks:
+  tnet:
+    driver: bridge
+
+services:
+  mysql:
+    container_name: "db"
+    restart: always
+    image: mysql:5.6
+    ports:
+     - "3306:3306"
+    networks:
+     - tnet
+    environment:
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_USER=root
+     - MYSQL_PASSWORD=root
+  phpapp:
+    privileged: true
+    container_name: "app"
+    image: "seregatte/php:7.1-apache"
+    ports:
+     - "9000:9000"
+     - "8000:80"
+    networks:
+     - tnet
+    environment:
+     - XDEBUG_ENABLED=1
+     - APACHE_DOCUMENT_ROOT=/var/www/app/public
+     - XDEBUG_CONFIG=idekey=VSCODE remote_host=192.168.64.1
+    volumes:
+     - "./app:/var/www/app"
+    depends_on:
+     - mysql
