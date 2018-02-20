@@ -1,0 +1,37 @@
+ls
+cd app/
+ls
+ls
+ls
+cd app/
+ls
+composer req make --dev
+composer req annotations admin apache-pack
+php bin/console make:entity
+php bin/console 
+php bin/console doctrine:database:create
+composer req orm
+php bin/console 
+php bin/console doctrine:migrations:diff
+php bin/console doctrine:migrations:diff
+php bin/console doctrine:schema:create --dump-sql
+php bin/console doctrine:schema:create
+ls
+rm -Rf src/Migrations/Version20180123225620.php 
+chmod -R 777 config/
+php bin/console make:controller 
+php bin/console 
+chmod -R 777 src/
+chmod -R 777 .
+chmod -R 777 src/
+php bin/console 
+php bin/console cache:clear
+mysql -u root -proot confession
+mysql -u root -proot -hmysql confession
+mysql -u root -proot -hmysql confession_app
+php bin/console doctrine:schema:create
+cd app/
+composer require jakubsuchy/amazon-alexa-php
+cat ~/.bash_history 
+cat ~/.bash_history > comandos.txt
+docker exec -it app bash

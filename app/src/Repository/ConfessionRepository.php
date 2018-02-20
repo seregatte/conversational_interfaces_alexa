@@ -13,16 +13,22 @@ class ConfessionRepository extends ServiceEntityRepository
         parent::__construct($registry, Confession::class);
     }
 
-    /*
-    public function findBySomething($value)
+    public function getARandomConfession()
     {
-        return $this->createQueryBuilder('c')
-            ->where('c.something = :value')->setParameter('value', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery('SELECT u FROM App\Entity\Confession u ORDER BY u.id');
+
+        // returns an array of Product objects
+        return $query->execute()[0];
     }
-    */
+
+    public function registerAConfession($body)
+    {
+        $em = $this->getEntityManager();
+        $confession = new Confession();
+        $confession->setBody($body);
+        $em->persist($confession);
+        $em->flush();
+    }
 }
